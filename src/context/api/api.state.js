@@ -10,6 +10,8 @@ import {
   FETCH_COUNTRIES,
   SET_COUNTRY,
   FETCH_COUNTRY,
+  COUNTRY_DATA,
+  CLEAR_COUNTRY,
 } from './api.types';
 import initialState from './api.initialState';
 
@@ -19,7 +21,6 @@ const ApiState = (props) => {
   const apiCall = (url = 'https://api.covid19api.com') =>
     axios.create({
       baseURL: url,
-      timeout: 8000,
     });
 
   const tutorialFetchData = async () => {
@@ -78,14 +79,27 @@ const ApiState = (props) => {
       deaths,
       lastUpdate,
     };
+
+    const modifiedValues = {
+      confirmed: confirmed.value,
+      recovered: recovered.value,
+      deaths: deaths.value,
+    };
+
     dispatch({ type: SET_LOADING_TRUE });
     dispatch({ type: FETCH_COUNTRY, payload: modifiedData });
+    dispatch({ type: COUNTRY_DATA, payload: modifiedValues });
     dispatch({ type: SET_LOADING_FALSE });
   };
 
   const setCountry = async (country) => {
-    await fetchCountry(country);
-    dispatch({ type: SET_COUNTRY, payload: country });
+    if (country === 'global') {
+      dispatch({ type: CLEAR_COUNTRY });
+      await tutorialFetchData();
+    } else {
+      await fetchCountry(country);
+      dispatch({ type: SET_COUNTRY, payload: country });
+    }
   };
 
   return (
@@ -96,6 +110,7 @@ const ApiState = (props) => {
         daily: state.daily,
         countries: state.countries,
         country: state.country,
+        barChartData: state.barChartData,
         loading: state.loading,
         tutorialFetchData,
         fetchDailyData,

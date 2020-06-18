@@ -3,6 +3,7 @@ const initialState = {
   daily: [],
   countries: [],
   country: null,
+  barChartData: null,
   loading: false,
 };
 

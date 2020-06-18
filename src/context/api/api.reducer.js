@@ -6,6 +6,8 @@ import {
   FETCH_COUNTRIES,
   SET_COUNTRY,
   FETCH_COUNTRY,
+  COUNTRY_DATA,
+  CLEAR_COUNTRY,
 } from './api.types';
 
 export default function ApiReducer(state, action) {
@@ -25,6 +27,10 @@ export default function ApiReducer(state, action) {
       return { ...state, countries: payload };
     case SET_COUNTRY:
       return { ...state, country: payload };
+    case COUNTRY_DATA:
+      return { ...state, barChartData: payload };
+    case CLEAR_COUNTRY:
+      return { ...state, country: null };
     default:
       return state;
   }

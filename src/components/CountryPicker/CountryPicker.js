@@ -6,7 +6,7 @@ import ApiContext from './../../context/api/api.context';
 
 const CountryPicker = () => {
   const apiContext = useContext(ApiContext);
-  const { fetchCountries, countries, setCountry, country } = apiContext;
+  const { fetchCountries, countries, setCountry } = apiContext;
 
   useEffect(() => {
     fetchCountries();
