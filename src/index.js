@@ -1,6 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app/App';
+import ApiState from './context/api/api.state';
 
-import App from "./app/App";
+ReactDOM.render(
+  <ApiState>
+    <App />
+  </ApiState>,
 
-ReactDOM.render(<App />, document.getElementById("root"));
+  document.getElementById('root')
+);

@@ -1,0 +1,7 @@
+export const GET_DATA = 'GET_DATA';
+export const GET_DAILY_DATA = 'GET_DAILY_DATA';
+export const SET_LOADING_TRUE = 'SET_LOADING_TRUE';
+export const SET_LOADING_FALSE = 'SET_LOADING_FALSE';
+export const FETCH_COUNTRIES = 'FETCH_COUNTRIES';
+export const SET_COUNTRY = 'SET_COUNTRY';
+export const FETCH_COUNTRY = 'FETCH_COUNTRY';
